@@ -1,0 +1,29 @@
+body {
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  background-color: #c6e5fe;
+  color: #3b2800;
+  text-align: center;
+}
+
+@font-face {
+  font-family: "Erika Knoebl";
+  src: url("fonts/G2ErikaKnoebl1-Half.otf") format("opentype");
+}
+
+header {
+  margin-top: 10px;
+}
+
+h1 {
+  font-size: 18px;
+}
+
+h2 {
+  font-size: 18px;
+  color: #605413;
+  margin-top: -12px;
+}
+
