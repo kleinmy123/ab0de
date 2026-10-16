@@ -14,7 +14,11 @@ body {
 }
 
 header {
-  margin-top: 10px;
+  margin: 10px 10px 0 10px;
+}
+
+main{
+  margin: 0px 20px 2px 20px;
 }
 
 h1 {
@@ -25,5 +29,29 @@ h2 {
   font-size: 18px;
   color: #605413;
   margin-top: -12px;
+}
+
+h3{
+  font-size: 18px;
+}
+
+.DE{
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 18px;
+  color: #3b2800;
+}
+
+.EN{
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 18px;
+  color: #605413;
+  margin-top: -20px;
+}
+
+.open-discussion{
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 18px;
+  color: #8e3600;
+  margin: 0vw 12vw 0vw 12vw;
 }
 
