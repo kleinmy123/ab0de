@@ -18,8 +18,10 @@ jobs:
     name: Neue Bilder aus Telegram holen
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
+        - name: Checkout
         uses: actions/checkout@v6
+        with:
+        ref: ${{ github.ref_name }}
 
       - name: sharp installieren
         run: npm install --no-save --no-package-lock sharp
