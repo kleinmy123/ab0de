@@ -55,3 +55,14 @@ h3{
   margin: 0vw 12vw 0vw 12vw;
 }
 
+.feed {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+  gap: 1rem;
+  margin-top: 2rem;
+}
+.feed-item { margin: 0; }
+.feed-item img {
+  width: 100%;
+  display: block;
+}

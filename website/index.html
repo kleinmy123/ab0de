@@ -24,12 +24,44 @@
         <p class="EN">open to all</p>
         <p>Zu dieser Pre-Opening Discussion sind alle Interessierten herzlich eingeladen.
 Wir bereiten Objekte, Tätigkeiten und Texte vor und bieten einen Einblick in unsere Arbeit. Gemeinsam werden dann unterschiedliche Blickachsen, Aussichtspunkte und Parameter im Raum erlebt und geschaffen. Dabei wird mit traditionellen wie neuen Techniken und Materialien, mit Sprache und dem eigenen Körper im Raum gearbeitet, experimentiert und ausprobiert. Im Rahmen der Pre-Opening Discussion bringen Sie, bringt Ihr, eure ganz persönliche Expertise ein.
-Die Einladung richtet sich an alle, unabhängig von Alter, Vorwissen, Geschlecht, Sprache oder Herkunft. Kinder sind explizit willkommen..</p>
+Die Einladung richtet sich an alle, unabhängig von Alter, Vorwissen, Geschlecht, Sprache oder Herkunft. Kinder sind explizit willkommen.</p>
         <p class="EN">Everyone interested is warmly invited to this Pre-Opening Discussion.
       We will prepare objects, activities, and texts and offer an insight into our work. Together, we will then experience and create different lines of sight, viewpoints, and parameters in the space. We will work, experiment, and explore using both traditional and new techniques and materials, language, and our own bodies in the space. As part of the Pre-Opening Discussion, you are invited to contribute your very own expertise.
       Everyone is welcome, regardless of age, prior knowledge, gender, language, or background. Children are explicitly welcome.</p>
-        <br>
-      </div>
-    </main>
+       <br>
+    </div>
+
+    <section id="feed" class="feed"></section>
+</main>
+    <script>
+      async function loadFeed() {
+        const res = await fetch("/feed.json");
+        const { items } = await res.json();
+        const feed = document.getElementById("feed");
+
+        for (const item of items) {
+          const figure = document.createElement("figure");
+          figure.className = "feed-item";
+
+          const link = document.createElement("a");
+          link.href = item.src; // große Version
+
+          const img = document.createElement("img");
+          img.src = item.thumb; // Vorschau
+          img.loading = "lazy";
+          img.alt = "";
+          img.style.aspectRatio = item.width / item.height;
+
+          const caption = document.createElement("figcaption");
+          caption.textContent = new Date(item.date).toLocaleDateString("de-DE");
+
+          link.append(img);
+          figure.append(link, caption);
+          feed.append(figure);
+        }
+      }
+
+      loadFeed();
+    </script>
   </body>
 </html>
