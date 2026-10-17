@@ -1,0 +1,61 @@
+name: Telegram Feed
+
+on:
+  schedule:
+    - cron: "*/5 * * * *" # alle 5 Minuten (GitHub startet das nicht auf die Minute genau)
+  workflow_dispatch: # manuell startbar unter Actions -> Telegram Feed -> Run workflow
+
+permissions:
+  contents: write # Bilder und feed.json ins Repo committen
+  actions: write # deploy.yml anstoßen
+
+concurrency:
+  group: telegram-feed
+  cancel-in-progress: false
+
+jobs:
+  fetch:
+    name: Neue Bilder aus Telegram holen
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v6
+
+      - name: sharp installieren
+        run: npm install --no-save --no-package-lock sharp
+
+      - name: Bilder holen und verkleinern
+        env:
+          TELEGRAM_BOT_TOKEN: ${{ secrets.TELEGRAM_BOT_TOKEN }}
+          TELEGRAM_CHANNEL_ID: ${{ vars.TELEGRAM_CHANNEL_ID }}
+        run: node scripts/fetch-telegram.mjs
+
+      - name: Änderungen committen
+        id: commit
+        run: |
+          git config user.name "telegram-feed[bot]"
+          git config user.email "telegram-feed@users.noreply.github.com"
+          git add website telegram-state.json
+
+          if git diff --cached --quiet; then
+            echo "Keine Änderungen."
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+            exit 0
+          fi
+
+          # Nur deployen, wenn sich wirklich etwas an der Website geändert hat
+          if git diff --cached --quiet -- website; then
+            echo "deploy=false" >> "$GITHUB_OUTPUT"
+          else
+            echo "deploy=true" >> "$GITHUB_OUTPUT"
+          fi
+
+          git commit -m "Neue Bilder aus Telegram"
+          git pull --rebase
+          git push
+
+      - name: Deployment anstoßen
+        if: steps.commit.outputs.deploy == 'true'
+        env:
+          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: gh workflow run deploy.yml --ref main
