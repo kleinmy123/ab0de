@@ -16,12 +16,12 @@ concurrency:
 jobs:
   fetch:
     name: Neue Bilder aus Telegram holen
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
     steps:
-        - name: Checkout
+      - name: Checkout
         uses: actions/checkout@v6
         with:
-        ref: ${{ github.ref_name }}
+          ref: ${{ github.ref_name }}
 
       - name: sharp installieren
         run: npm install --no-save --no-package-lock sharp
