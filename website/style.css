@@ -86,11 +86,19 @@ h3{
   margin-top: -20px;
 }
 
+.divider{
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 18px;
+  color: #101478;
+  text-align: center;
+}
+
 .open-discussion{
   font-family: "Erika Knoebl", sans-serif;
   font-size: 18px;
   color: #101478;
-  margin: 0vw 22vw 0vw 22vw;
+  margin: 0 auto;
+  max-width: 550px;
   text-align: justify;
   text-justify: inter-word;
 }
@@ -136,15 +144,23 @@ button.more {
   appearance: none;
   -webkit-appearance: none;
   font-family: "Erika Knoebl", sans-serif;
-  font-style: italic;
   font-size: 18px;
-  color: #101478;
+  color: #c1c1b8;
   background: none;
   border: none;
   outline: none;
   box-shadow: none;
   padding: 0;
   cursor: pointer;
-  magin-top: -15px:
+  margin-top: -22px;
   right: 0;
+}
+
+.imprint {
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 10px;
+  color: #3b2800;
+  margin-top: 10rem;
+  margin-bottom: 2rem;
+  position: relative;
 }
