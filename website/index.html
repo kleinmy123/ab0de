@@ -9,52 +9,81 @@
   </head>
 
   <body>
-    <body>
       <div class="intro">
-    <header>
-      <h1>11.10.–29.11.2026<br><br>Während unseres Aufenthalts im Künstlerhaus Ganslberg widmen wir uns der allmählichen Einrichtung eines Ortes an dem wir leben und arbeiten.</h1>
-      <h2>During our stay at the Künstlerhaus Ganslberg, we will dedicate ourselves to the gradual setup of a place where we live and work.</h2>
-    </header>
-      <main>
-        <br>
-        <p class="DE">Opening 29.11.2026 14:00</p>
+        <header>
+          <h1>11.10.–29.11.2026<br><br>Während unseres Aufenthalts im Künstlerhaus Ganslberg widmen wir uns der allmählichen Einrichtung eines Ortes an dem wir leben und arbeiten.</h1>
+          <p class="EN-h1">During our stay at the Künstlerhaus Ganslberg, we will dedicate ourselves to the gradual setup of a place where we live and work.</p>
+        </header>
+        <main>
           <br>
-          <br>
-        <div class="open-discussion">
-          <h3>Pre-Opening Discussion am 1.11.2026 11–14:00</h3>
-          <p>offen für alle</p>
-          <p class="EN">open to all</p>
-          <p>Zu dieser Pre-Opening Discussion sind alle Interessierten herzlich eingeladen.
-  Wir bereiten Objekte, Tätigkeiten und Texte vor und bieten einen Einblick in unsere Arbeit. Gemeinsam werden dann unterschiedliche Blickachsen, Aussichtspunkte und Parameter im Raum erlebt und geschaffen. Dabei wird mit traditionellen wie neuen Techniken und Materialien, mit Sprache und dem eigenen Körper im Raum gearbeitet, experimentiert und ausprobiert. Im Rahmen der Pre-Opening Discussion bringen Sie, bringt Ihr, eure ganz persönliche Expertise ein.
-  Die Einladung richtet sich an alle, unabhängig von Alter, Vorwissen, Geschlecht, Sprache oder Herkunft. Kinder sind explizit willkommen.</p>
-          <p class="EN">Everyone interested is warmly invited to this Pre-Opening Discussion.
-        We will prepare objects, activities, and texts and offer an insight into our work. Together, we will then experience and create different lines of sight, viewpoints, and parameters in the space. We will work, experiment, and explore using both traditional and new techniques and materials, language, and our own bodies in the space. As part of the Pre-Opening Discussion, you are invited to contribute your very own expertise.
-        Everyone is welcome, regardless of age, prior knowledge, gender, language, or background. Children are explicitly welcome.</p>
-        <br>
-      </div>
-  </main>
-</div>
+          <h2>Opening 29.11.2026 14:00</h2>
+            <br>
+            <br>
+            <br>
+            <br>
 
- <section id="feed" class="feed"></section>
-    <script>
+          <div class="open-discussion">
+            <h2>Pre-Opening Discussion am 1.11.2026 11–14:00</h2>
+            <p>offen für alle</p>
+            <p class="EN">open to all</p>
+              <div class="text-block collapsed">
+              <p>Zu dieser Pre-Opening Discussion sind alle Interessierten herzlich eingeladen.
+      Wir bereiten Objekte, Tätigkeiten und Texte vor und bieten einen Einblick in unsere Arbeit. Gemeinsam werden dann unterschiedliche Blickachsen, Aussichtspunkte und Parameter im Raum erlebt und geschaffen. Dabei wird mit traditionellen wie neuen Techniken und Materialien, mit Sprache und dem eigenen Körper im Raum gearbeitet, experimentiert und ausprobiert. Im Rahmen der Pre-Opening Discussion bringen Sie, bringt Ihr, eure ganz persönliche Expertise ein.
+      Die Einladung richtet sich an alle, unabhängig von Alter, Vorwissen, Geschlecht, Sprache oder Herkunft. Kinder sind explizit willkommen.</p>
+              <p class="EN">Everyone interested is warmly invited to this Pre-Opening Discussion.
+            We will prepare objects, activities, and texts and offer an insight into our work. Together, we will then experience and create different lines of sight, viewpoints, and parameters in the space. We will work, experiment, and explore using both traditional and new techniques and materials, language, and our own bodies in the space. As part of the Pre-Opening Discussion, you are invited to contribute your very own expertise.
+            Everyone is welcome, regardless of age, prior knowledge, gender, language, or background. Children are explicitly welcome.</p>
+              <br>
+            </div>
+
+             <button class="more" type="button" aria-expanded="false">mehr...</button>
+          
+            </div>
+        </main>
+      </div>
+
+    <section id="feed" class="feed"></section>
+
+   <script>
+      const intro = document.querySelector(".intro");
+      const block = document.querySelector(".text-block");
+      const moreBtn = document.querySelector(".more");
+
+      // Text klebt oben; ist er höher als der Bildschirm, klebt sein Ende am unteren Rand
+      function updateStickyTop() {
+        const top = Math.min(0, window.innerHeight - intro.offsetHeight);
+        intro.style.top = top + "px";
+      }
+
+      new ResizeObserver(updateStickyTop).observe(intro);
+      window.addEventListener("resize", updateStickyTop);
+      updateStickyTop();
+
+      // "mehr…" klappt den Text einmalig auf
+      moreBtn.addEventListener("click", () => {
+        block.classList.remove("collapsed");
+        moreBtn.remove();
+      });
+
       async function loadFeed() {
         const res = await fetch("/feed.json");
         const { items } = await res.json();
         const feed = document.getElementById("feed");
 
-      for (const item of items) {
-      const figure = document.createElement("figure");
-      figure.className = "feed-item";
+        for (const item of items) {
+          const figure = document.createElement("figure");
+          figure.className = "feed-item";
 
-      const img = document.createElement("img");
-      img.src = item.src;
-      img.loading = "lazy";
-      img.alt = "";
-      img.style.aspectRatio = item.width / item.height;
+          const img = document.createElement("img");
+          img.src = item.src;
+          img.loading = "lazy";
+          img.alt = "";
+          img.style.aspectRatio = item.width / item.height;
 
-      figure.append(img);
-      feed.append(figure);
-    }
+          figure.append(img);
+          feed.append(figure);
+        }
+      }
 
       loadFeed();
     </script>

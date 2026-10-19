@@ -27,13 +27,24 @@ body {
   align-items: center;
   gap: 1rem;
   margin-top: 2rem;
-  padding-bottom: 2rem;
+  padding: 0 0 2rem 0;
 }
 
 .feed-item {
   margin: 0;
   width: 100%;
   max-width: 45vw;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .feed-item { max-width: 65vw; }
+}
+
+/* Handy */
+@media (max-width: 600px) {
+  .feed { padding: 0 5px 2rem 5px; }
+  .feed-item { max-width: none; }
 }
 
 .feed-item img {
@@ -48,7 +59,6 @@ h1 {
 
 h2 {
   font-size: 18px;
-  color: #605413;
   margin-top: -12px;
 }
 
@@ -62,6 +72,13 @@ h3{
   color: #3b2800;
 }
 
+.EN-h1{
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 18px;
+  color: #675b17;
+  margin-top: -14px;
+}
+
 .EN{
   font-family: "Erika Knoebl", sans-serif;
   font-size: 18px;
@@ -72,6 +89,62 @@ h3{
 .open-discussion{
   font-family: "Erika Knoebl", sans-serif;
   font-size: 18px;
-  color: #8e3600;
-  margin: 0vw 12vw 0vw 12vw;
+  color: #101478;
+  margin: 0vw 22vw 0vw 22vw;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+.open-discussion h2{
+  font-family: "Erika Knoebl", sans-serif;
+  text-align: center;
+  color: #101478;
+}
+
+.open-discussion .text-block p{
+  margin: 0vw 0vw 0vw 0vw;
+  text-align: justify;
+  text-justify: inter-word;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .open-discussion { margin: 0vw 8vw 0vw 8vw; }
+}
+
+/* Handy */
+@media (max-width: 600px) {
+  .open-discussion { margin: 0vw 5vw 0vw 5vw; }
+}
+
+.text-block p {
+  line-height: 1.4;
+}
+
+.text-block.collapsed p:first-child {
+  max-height: calc(5 * 1.4em);
+  overflow: hidden;
+}
+
+.text-block.collapsed p.EN {
+  display: none;
+}
+
+button.more {
+  display: block;
+  margin-left: auto;
+  appearance: none;
+  -webkit-appearance: none;
+  font-family: "Erika Knoebl", sans-serif;
+  font-style: italic;
+  font-size: 18px;
+  color: #101478;
+  background: none;
+  border: none;
+  outline: none;
+  box-shadow: none;
+  padding: 0;
+  cursor: pointer;
+  magin-top: -15px:
+  right: 0;
 }
