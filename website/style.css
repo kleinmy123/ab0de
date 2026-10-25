@@ -130,6 +130,10 @@ line-height: 1.4;
   color: #675b17;
 }
 
+a.mail {
+  color: inherit;
+}
+
 /* Tablet */
 @media (max-width: 1024px) {
 .open-discussion { margin: 0vw 8vw 0vw 8vw; }

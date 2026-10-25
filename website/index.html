@@ -26,11 +26,13 @@
               <div class="text-block">
               <h2>Zu dieser Pre-Opening Discussion sind alle Interessierten herzlich eingeladen.
       Wir bereiten Objekte, Tätigkeiten und Texte vor und bieten einen Einblick in unsere Arbeit. Gemeinsam werden dann unterschiedliche Blickachsen, Aussichtspunkte und Parameter im Raum erlebt und geschaffen. Dabei wird mit traditionellen wie neuen Techniken und Materialien, mit Sprache und dem eigenen Körper im Raum gearbeitet, experimentiert und ausprobiert. Im Rahmen der Pre-Opening Discussion bringen Sie, bringt Ihr, eure ganz persönliche Expertise ein.
-      Die Einladung richtet sich an alle, unabhängig von Alter, Vorwissen, Geschlecht, Sprache oder Herkunft. Kinder sind explizit willkommen.</h2>
+      Die Einladung richtet sich an alle, unabhängig von Alter, Vorwissen, Geschlecht, Sprache oder Herkunft. Kinder sind explizit willkommen.
+              <p>Eine Anmeldung ist nicht notwendig, hilft aber bei der Planung. Bei Fragen: <a class="mail" href="#" data-user="info" data-domain="ab0de.site">info [at] ab0de [punkt] site</a>
+              </p></h2>
               <p class="EN">Everyone interested is warmly invited to this Pre-Opening Discussion.
             We will prepare objects, activities, and texts and offer an insight into our work. Together, we will then experience and create different lines of sight, viewpoints, and parameters in the space. We will work, experiment, and explore using both traditional and new techniques and materials, language, and our own bodies in the space. As part of the Pre-Opening Discussion, you are invited to contribute your very own expertise.
             Everyone is welcome, regardless of age, prior knowledge, gender, language, or background. Children are explicitly welcome.</p>
-              <br>
+              <p class="EN">A registration is not required, but appreciated for planning purposes. For any questions: <a class="mail" href="#" data-user="info" data-domain="ab0de.site">info [at] ab0de [punkt] site</a>
             </div>
           </div>
         </div>  
@@ -44,6 +46,14 @@
 
 
    <script>
+      
+      // Mailto-Links zusammenbauen, damit sie nicht von Bots ausgelesen werden können
+      document.querySelectorAll("a.mail").forEach((a) => {
+        const address = a.dataset.user + "@" + a.dataset.domain;
+        a.href = "mailto:" + address;
+        a.textContent = address;
+      });
+
       const intro = document.querySelector(".intro");
 
       // Text klebt oben; ist er höher als der Bildschirm, klebt sein Ende am unteren Rand
