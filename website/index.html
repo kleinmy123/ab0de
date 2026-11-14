@@ -10,43 +10,43 @@
 
   <body>
     <main>
-     <div class="intro">
-       <header>
-          <h1>11.10.–29.11.2026<br><br>Während unseres Aufenthalts im Künstlerhaus Ganslberg widmen wir uns der allmählichen Einrichtung eines Ortes an dem wir leben und arbeiten.</h1>
-          <p class="EN-h1">During our stay at the Künstlerhaus Ganslberg, we will dedicate ourselves to the gradual setup of a place where we live and work.</p>
+      <div class="intro">
+        <header>
+          <h1>Mobiles Atelier<br>
+          Florian Knöbl &amp; Mona Mayer<br></h1>
+          <br>
+          <h2>Opening 29.11.2026 14:00<br>
+          Treffpunkt am Parkplatz</h2>
+          <br>
+          <p class="EN-h1">Abschlussveranstaltung der Residency, Zeitraum Oktober + November 2026, Künstlerhaus Ganslberg, Ganslberg 24, 84032 Altdorf<br></p>
         </header>
-            <br>
-            <h2>Opening 29.11.2026 14:00</h2>
       </div>
-        <div class="discussion-layer"> 
-          <div class="open-discussion">
-            <h2>Pre-Opening Discussion am 1.11.2026 11–14:00</h2>
-            <h2 class="DE">offen für alle</h2>
-            <p class="EN">open to all</p>
-              <div class="text-block">
-              <h2>Zu dieser Pre-Opening Discussion sind alle Interessierten herzlich eingeladen.
-      Wir bereiten Objekte, Tätigkeiten und Texte vor und bieten einen Einblick in unsere Arbeit. Gemeinsam werden dann unterschiedliche Blickachsen, Aussichtspunkte und Parameter im Raum erlebt und geschaffen. Dabei wird mit traditionellen wie neuen Techniken und Materialien, mit Sprache und dem eigenen Körper im Raum gearbeitet, experimentiert und ausprobiert. Im Rahmen der Pre-Opening Discussion bringen Sie, bringt Ihr, eure ganz persönliche Expertise ein.
-      Die Einladung richtet sich an alle, unabhängig von Alter, Vorwissen, Geschlecht, Sprache oder Herkunft. Kinder sind explizit willkommen.
-              <p>Eine Anmeldung ist nicht notwendig, hilft aber bei der Planung. Bei Fragen: <a class="mail" href="#" data-user="info" data-domain="ab0de.site">info [at] ab0de [punkt] site</a>
-              </p></h2>
-              <p class="EN">Everyone interested is warmly invited to this Pre-Opening Discussion.
-            We will prepare objects, activities, and texts and offer an insight into our work. Together, we will then experience and create different lines of sight, viewpoints, and parameters in the space. We will work, experiment, and explore using both traditional and new techniques and materials, language, and our own bodies in the space. As part of the Pre-Opening Discussion, you are invited to contribute your very own expertise.
-            Everyone is welcome, regardless of age, prior knowledge, gender, language, or background. Children are explicitly welcome.</p>
-              <p class="EN">A registration is not required, but appreciated for planning purposes. For any questions: <a class="mail" href="#" data-user="info" data-domain="ab0de.site">info [at] ab0de [punkt] site</a>
-            </div>
-          </div>
-        </div>  
-      
-        <section id="feed" class="feed"></section>
-    
+
+      <div class="discussion-layer">
+        <img class="discussion-img" src="platzhalter.png" alt="Poster Opening">
+      </div>
+
+      <section id="feed" class="feed"></section>
     </main>
-        
-    <footer><p class="imprint">(c) Florian Knöbl, Mona Mayer, unterstützt von Mobiles Atelier/BBK Bayern und Künstlerhaus Ganslberg.</p></footer>
 
+    <footer>
+      <p class="imprint">(c) Florian Knöbl, Mona Mayer, unterstützt von Mobiles Atelier/BBK Bayern und Künstlerhaus Ganslberg, info@ab0de.site</p>
+    </footer>
 
+    <script>
+      // Plakat: bei jedem Laden der Seite zufällig eins aus dieser Liste zeigen
+      // Neue Bilder einfach in einen Ordner legen (z. B. website/posters/) und hier eintragen
+      const posters = [
+        "platzhalter.png",
+        "posters/poster1.jpg",
+        "posters/poster2.jpg",
+        "posters/poster3.jpg",
+        "posters/poster4.jpg",
+        "posters/poster5.jpg",
+      ];
+      document.querySelector(".discussion-img").src =
+        posters[Math.floor(Math.random() * posters.length)];
 
-   <script>
-      
       // Mailto-Links zusammenbauen, damit sie nicht von Bots ausgelesen werden können
       document.querySelectorAll("a.mail").forEach((a) => {
         const address = a.dataset.user + "@" + a.dataset.domain;
@@ -54,9 +54,9 @@
         a.textContent = address;
       });
 
+      // Kopftext klebt oben; ist er höher als der Bildschirm, klebt sein Ende am unteren Rand
       const intro = document.querySelector(".intro");
 
-      // Text klebt oben; ist er höher als der Bildschirm, klebt sein Ende am unteren Rand
       function updateStickyTop() {
         const top = Math.min(0, window.innerHeight - intro.offsetHeight);
         intro.style.top = top + "px";
@@ -67,6 +67,7 @@
       window.addEventListener("resize", updateStickyTop);
       updateStickyTop();
 
+      // Bilder-Feed aus feed.json laden
       async function loadFeed() {
         const res = await fetch("/feed.json");
         const { items } = await res.json();

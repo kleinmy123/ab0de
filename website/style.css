@@ -1,153 +1,90 @@
-body {
-  font-family: "Erika Knoebl", sans-serif;
-font-size: 18px;
-margin: 0;
-padding: 0;
-background-color: #c6e5fe;
-color: #3b2800;
-text-align: center;
-}
-
 @font-face {
-font-family: "Erika Knoebl";
-src: url("fonts/G2ErikaKnoebl1-Half.otf") format("opentype");
+  font-family: "Erika Knoebl";
+  src: url("fonts/G2ErikaKnoebl1-Half.otf") format("opentype");
 }
-
 
 :root {
---intro-h: 0px;
+  --intro-h: 0px; /* wird per Skript auf die Höhe des Kopftexts gesetzt */
 }
 
-.intro {
-position: sticky;
-top: 0;
-padding: 10px 20px 0 20px;
-}
-
-.discussion-layer {
-position: relative;
-z-index: 1;
-box-sizing: border-box;
-padding: 12px 20px 0 20px;
-margin-top: max(0px, calc(100svh - var(--intro-h)));
-background-color: #c6e5fe;
-}
-
-.open-discussion h2 {
-margin-top: 0;
-}
-
-.feed {
-position: relative;
-z-index: 1;
-min-height: 100svh;
-display: flex;
-flex-direction: column;
-align-items: center;
-gap: 1rem;
-margin-top: 100svh;
-padding: 0 0 2rem 0;
-}
-
-.feed-item {
-margin: 0;
-width: 100%;
-max-width: 45vw;
-}
-
-/* Tablet */
-@media (max-width: 1024px) {
-.feed-item { max-width: 65vw; }
-}
-
-/* Handy */
-@media (max-width: 600px) {
-.feed { padding: 0 5px 2rem 5px; }
-.feed-item { max-width: none; }
-}
-
-.feed-item img {
-display: block;
-width: 100%;
-height: auto;
+body {
+  font-family: "Erika Knoebl", sans-serif;
+  font-size: 18px;
+  margin: 0;
+  padding: 0;
+  background-color: #c6e5fe;
+  color: #3b2800;
+  text-align: center;
 }
 
 h1 {
-font-size: 18px;
+  font-size: 18px;
 }
 
 h2 {
-font-size: 18px;
-margin-top: -12px;
+  font-size: 18px;
+  margin-top: -12px;
 }
 
-h3{
-font-size: 18px;
-}
-
-.DE{
-font-family: "Erika Knoebl", sans-serif;
-font-size: 18px;
-color: #3b2800;
-}
-
-.EN-h1{
-font-family: "Erika Knoebl", sans-serif;
-font-size: 18px;
-color: #675b17;
-margin-top: -14px;
-}
-
-.EN{
-font-family: "Erika Knoebl", sans-serif;
-font-size: 18px;
-color: #675b17;
-margin-top: -20px;
-}
-
-.open-discussion{
-font-family: "Erika Knoebl", sans-serif;
-font-size: 18px;
-margin: 0 auto;
-max-width: 666px;
-text-align: center;
-text-justify: inter-word;
-}
-
-.open-discussion h2{
-font-family: "Erika Knoebl", sans-serif;
-text-align: center;
-color: #3b2800;
-}
-
-.open-discussion .text-block p{
-margin: 0vw 0vw 0vw 0vw;
-text-align: center;
-line-height: 1.4;
-}
-
-.EN p{
+.EN-h1 {
   color: #675b17;
+  margin-top: -14px;
+}
+
+/* Kopftext: bleibt oben stehen */
+.intro {
+  position: sticky;
+  top: 0;
+  padding: 10px 20px 0 20px;
+}
+
+/* Plakat: wartet unter dem Bildschirmrand, scrollt dann über den Kopftext */
+.discussion-layer {
+  position: relative;
+  z-index: 1;
+  margin-top: max(0px, calc(100svh - var(--intro-h)));
+}
+
+.discussion-img {
+  display: block;
+  margin-inline: auto;
+  width: 100%;
+  max-width: 80vw;
+  height: auto;
+}
+
+/* Bilder-Feed: beginnt, wenn das Plakat ganz weggescrollt ist */
+.feed {
+  position: relative;
+  z-index: 1;
+  min-height: 100svh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  margin-top: 100svh;
+  padding: 0 0 2rem 0;
+}
+
+.feed-item {
+  margin: 0;
+  width: 100%;
+  max-width: 45vw;
+}
+
+.feed-item img {
+  display: block;
+  width: 100%;
+  height: auto;
 }
 
 a.mail {
   color: inherit;
 }
 
-/* Tablet */
-@media (max-width: 1024px) {
-.open-discussion { margin: 0vw 8vw 0vw 8vw; }
-}
-
-/* Handy */
-@media (max-width: 600px) {
-.open-discussion { margin: 0vw 5vw 0vw 5vw; }
-}
-
+/* Footer: fest am unteren Rand */
 .imprint {
-  font-family: "Erika Knoebl", sans-serif;
   font-size: 10px;
-  color: #3b2800;
   margin: 0;
   padding: 0 20px 10px 20px;
 }
@@ -157,4 +94,39 @@ footer {
   left: 0;
   right: 0;
   bottom: 12px;
+}
+
+/* Tablet */
+@media (max-width: 1024px) {
+  .discussion-layer {
+    padding: 0 88px;
+  }
+
+  .discussion-img {
+    max-width: none;
+  }
+
+  .feed-item {
+    max-width: 65vw;
+  }
+}
+
+/* Handy */
+@media (max-width: 600px) {
+
+    .discussion-layer {
+    padding: 0 18px;
+  }
+
+  .discussion-img {
+    max-width: none;
+  }
+
+  .feed {
+    padding: 0 5px 2rem 5px;
+  }
+
+  .feed-item {
+    max-width: none;
+  }
 }
